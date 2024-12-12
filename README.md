@@ -54,3 +54,18 @@ Same with deactivating a user, you would need to retrieve the userID from the da
 
 ![Postman Delete User](/images/postmanddeleteuser.png)
 ![MongoDB Delete User](/images/mongodbdeleteuser.png)
+
+## Post Register User with Password Hashing-Bcrypt
+
+When it comes to registering a user via postman, please use the following link and Body-raw in json format to post the user: http://localhost:3000/register
+
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "password": "password123"
+}
+
+If done correctly, the postman will submit to the database the entered details in a hashingPassword for as shown in the screenshots below:
+
+![Postman Post Bcrypt with Password Registration](/images/postmanpostregister.png)
+![MongoDB Post Bcrypt with Password Registration](/images/mongodbpostregister.png)
