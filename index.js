@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import user from './models/users.js';  
+import bcrypt from 'bcrypt';
 
 const app = express();
 const port = 3000;  
@@ -33,7 +34,14 @@ app.get('/', (req, res) => {
 app.post('/users', async (req, res) => {
     try {
         const { name, email, age, isActive } = req.body;
-        const newUser = new user({ name, email, age, isActive });
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new user({
+            name,
+            email,
+            password: hashedPassword,
+            age,
+            isActive
+        });
         await newUser.save();
         res.status(201).send(newUser);
     } catch (error) {
